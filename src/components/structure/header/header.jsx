@@ -3,13 +3,12 @@ import { Logo } from "./logo/logo.jsx";
 import {
   MobileMenu,
   HorizontalNav,
-  SidebarNav,
 } from "./navDetails/navigations.jsx";
 import { menuData } from "./navDetails/data/menu.js";
-import { SignIn, SignUp } from "./auth/signin.jsx";
+import { SignIn} from "./auth/signin.jsx";
 import s from "./s.module.css";
 import { Container } from "../container/container.jsx";
-import { AsideLeft } from "../main/aside/asideL.jsx"; // Импортируем твой компонент
+
 
 export function Header() {
   return (

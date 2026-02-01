@@ -4,7 +4,7 @@ import { Main } from "../../components/structure/main/main";
 import { Hero } from "../../components/structure/main/hero/hero";
 import { Section } from "../../components/structure/main/sections/sections";
 import { Advantages } from "./content/advantages/advantages";
-import { HeroContent } from "./content/hero/hero";
+import { HeroContent } from "./content/hero/HeroContent";
 import Clients from "./content/clients/clients";
 import { Craft } from "./content/craft/craft";
 import Developers from "./content/developers/developers";

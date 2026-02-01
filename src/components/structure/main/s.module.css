@@ -8,13 +8,6 @@
   
 }
 
-.asideRight {
-  display: none;/*
-  background-color: #1e67af;*/
-  padding: 20px;
-  border-left: 1px solid #ddd;
-}
-
 .main {
   flex-grow: 1;
 }

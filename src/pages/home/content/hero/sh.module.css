@@ -1,0 +1,55 @@
+/* Добавь это в s.module.css или HomePage.module.css */
+
+.hero_content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.hero_title {
+  font-size: 3.5rem; /* Большой акцентный заголовок */
+  color: var(--color-text-main);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero_title span {
+  color: var(--color-primary); /* Выделяем слово цветом */
+}
+
+.hero_subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  font-weight: normal; /* Чтобы не было жирным из-за твоего сброса в index.css */
+}
+
+.hero_actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.btn_primary {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn_primary:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.btn_secondary {
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 10px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
