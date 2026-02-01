@@ -36,9 +36,10 @@ export function AsideLeft({ children, title, id, className }) {
     </aside>
   );
 }
+
 export function AsideRight({ children, title, id, className }) {
   return (
-    <aside id={id} className={`${s.AsideRight} ${className || ""}`}>
+    <aside id={id} className={`${s.asideRight} ${className || ""}`}>
       <h3 className={s.aside_title}>{title}</h3>
       {children}
     </aside>

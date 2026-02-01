@@ -2,8 +2,8 @@ import { Section } from "../../components/structure/main/sections/sections";
 import { Header } from "../../components/structure/header/header";
 import { Footer } from "../../components/structure/footer/footer";
 import { Main } from "../../components/structure/main/main";
-import { AsideLeft } from "../../components/structure/main/aside/asideL";
-import { AsideRight } from "../../components/structure/main/aside/asideR";
+import { AsideLeft } from "../../components/structure/main/sections/sections";
+import { AsideRight } from "../../components/structure/main/sections/sections";
 import { SidebarNav } from "../../components/structure/header/navDetails/navigations";
 import { menuData } from "../../components/structure/header/navDetails/data/menu";
 /*import s from "../sP.module.css";*/
