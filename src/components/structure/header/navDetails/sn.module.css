@@ -1,0 +1,111 @@
+/* --- 1. БАЗОВЫЕ СТИЛИ (Mobile First) --- */
+
+.navContainer summary {
+  padding: 10px 15px;
+  background: transparent; /* Убрал серый фон */
+  cursor: pointer;
+  list-style: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.navContainer summary:hover {
+  color: #3498db; /* Акцентный синий при наведении */
+}
+
+.navContainer summary::-webkit-details-marker,
+.navContainer summary::marker {
+  display: none !important;
+}
+
+.navContainer ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.navContainer a {
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: #3498db;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+}
+
+.navContainer a:hover {
+  opacity: 0.7;
+}
+
+/* МОБИЛЬНЫЙ БУРГЕР */
+.mobileMenu {
+  display: block;
+  position: static; 
+}
+
+.burgerIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.burgerIcon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Твоя рабочая панель */
+.mobileContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  z-index: 1000;
+}
+  .tabletNav {
+    display: none;
+    
+  }
+/* --- 2. ДЕСКТОПНЫЕ СТИЛИ --- */
+@media (min-width: 769px) {
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .tabletNav {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tabletNav > details {
+    position: relative;
+  }
+
+  .tabletNav > details > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    min-width: 200px;
+    z-index: 1001;
+    border-radius: 4px;
+  }
+}

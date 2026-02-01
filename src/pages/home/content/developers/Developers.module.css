@@ -1,0 +1,64 @@
+/*
+ * ------------------------------------------------------------------
+ * ОСНОВНЫЕ СТИЛИ БЛОКА DEVELOPERS
+ * ------------------------------------------------------------------
+ */
+.section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.developers {
+    /* Фон секции команды: #f5f4fa */
+    background-color: #f5f4fa;
+    text-align: center;
+}
+
+.developers__title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.18;
+    padding-bottom: 30px;
+    /* Цвет заголовка: #212121 */
+    color: #212121;
+}
+
+/* 📱 МОБИЛЬНЫЙ (По умолчанию): 1 карточка в ряд */
+.developers__list {
+    display: grid;
+    /* Промежуток: 30px */
+    gap: 30px;
+    /* Одна колонка на мобильных */
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 auto;
+    list-style: none;
+}
+
+/* ------------------------------------------------------------------
+ * МЕДИАЗАПРОСЫ (ПОРЯДОК: 768px, затем 1200px)
+ * ------------------------------------------------------------------
+ */
+
+/* 🖥️ ПЛАНШЕТ (min-width: 768px): 2 карточки в ряд */
+@media screen and (min-width: 768px) {
+    .developers__list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 💻 ДЕСКТОП (min-width: 1280px): 4 карточки в ряд */
+@media screen and (min-width: 1280px) {
+    .section {
+        padding-top: 94px;
+        padding-bottom: 94px;
+    }
+
+    .developers__title {
+        padding-bottom: 50px;
+        font-size: 36px;
+    }
+
+    .developers__list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

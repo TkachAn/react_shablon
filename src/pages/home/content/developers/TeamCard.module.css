@@ -1,0 +1,92 @@
+/*
+ * Стили для TeamCard
+ */
+.teamCard {
+    /* Обязательно, чтобы карточка выглядела как в вашем HTML */
+    background-color: #ffffff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+        0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 4px 4px;
+}
+
+.teamCard__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.teamCard__footer {
+    padding: 30px 0;
+}
+
+.teamCard__text {
+    font-size: 16px;
+    line-height: 1.18;
+    color: #757575;
+    /* primary-txt-color */
+    margin: 0 0 16px 0;
+}
+
+.teamCard__name {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    color: #212121;
+    /* secondary-txt-color */
+    margin-bottom: 10px;
+}
+
+/*
+ * Стили для Социальных ссылок
+ */
+.teamCard__socPos {
+    /* Этот div обертка использован для позиционирования в вашем HTML */
+    padding-bottom: 30px;
+}
+
+.teamCard__social,
+.social {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+    /* Промежуток между иконками */
+}
+
+.social__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /*fill: #AFB1B8;*/
+    background-color: #ffffff;
+    border: 1px solid #2196F3;
+    fill: #2196F3;
+   
+
+    transition: fill 250ms ease-in-out, background-color 250ms ease-in-out;
+}
+
+@media screen and (min-width: 1200px) {
+    .social__link {
+        fill: #AFB1B8;
+        border: 1px solid #AFB1B8;
+        transition: fill 250ms ease-in-out, background-color 250ms ease-in-out;
+    }
+
+
+    /* ИЗМЕНЕНИЕ 1: Стили Ховера только для Десктопа */
+    .social__link:hover,
+    .social__link:focus {
+        /* При ховере: Фон становится голубым, иконка белой */
+        background-color: #2196F3;
+        fill: #ffffff;
+        border-color: #2196F3;
+        /* Убедимся, что обводка остается голубой (или того же цвета, что и фон) */
+    }
+}

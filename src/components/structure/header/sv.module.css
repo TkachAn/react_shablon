@@ -1,0 +1,53 @@
+.asideLeft {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .asideLeft {
+    display: flex !important;
+    flex-direction: column;
+    width: 300px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 60px 40px; /* Увеличил отступы всей панели */
+    background-color: #fff;
+    border-right: 1px solid #f0f0f0;
+    box-sizing: border-box;
+  }
+
+  .sideHeaderContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Двигаем ЛОГО внутри компонента через переданный класс */
+  .logoInPanel {
+    margin-bottom: 80px !important; /* Мощный отступ от меню */
+  }
+
+  /* Навигация */
+  .sideNavSection {
+    flex: 1;
+  }
+
+  /* Красивое меню (через глобальные селекторы, чтобы не лезть в sn.module.css) */
+  .sideNavSection :global(.navContainer) summary {
+    font-size: 1.2rem;
+    color: #222;
+    padding: 15px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* Блок авторизации */
+  .sideAuthSection {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+  }
+}

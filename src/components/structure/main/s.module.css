@@ -1,0 +1,132 @@
+
+
+.asideLeft {
+  display: none;/*
+  background-color: #6fabe7;*/
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  
+}
+
+.asideRight {
+  display: none;/*
+  background-color: #1e67af;*/
+  padding: 20px;
+  border-left: 1px solid #ddd;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.section {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.article {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/*footer */
+.flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 50px;
+}
+.address {
+  text-align: right;
+}
+.contact {
+  text-align: left;
+}
+
+
+
+
+/* ======================================================= */
+/* БАЗОВЫЕ СТИЛИ .content (Mobile First: до 1024px) */
+
+.content {
+  /* Делаем .content Grid-контейнером для основного контента и сайдбара */
+  display: grid;
+  /* По умолчанию 1 колонка. Сайдбар будет идти под основным контентом. */
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+/* ======================================================= */
+@media (min-width: 768px) {
+}
+/* ======================================================= */
+/* 2. Планшет горизонтальный - ПОЯВЛЕНИЕ САЙДБАРА */
+/* min-width: 1024px */
+@media (min-width: 1024px) {
+  .content {
+    /* Две колонки: широкая (2fr) для основного контента и узкая (1fr) для сайдбара 
+    grid-template-columns: 1fr 2fr;*/
+    gap: 30px;
+  }
+  .asideRight {
+    display: block;
+  } 
+}
+
+/* ======================================================= */
+/* 3. Обычный монитор - УЛУЧШЕННАЯ РАСКЛАДКА */
+/* min-width: 1288px */
+@media (min-width: 1280px) {
+  .content {
+    /* Делаем основной контент еще шире: */
+    grid-template-columns: 1fr 3fr;
+    gap: 40px;
+  }
+  .container {
+    max-width: 1280px;
+  }
+}
+/* ======================================================= */
+/* 3. Обычный монитор - УЛУЧШЕННАЯ РАСКЛАДКА */
+/* min-width: 1288px */
+@media (min-width: 1560px) {
+  .content {
+    /* Делаем основной контент еще шире: */
+    grid-template-columns:1fr 5fr;
+    gap: 30px;
+  }
+
+.asideLeft {
+    display: block;
+    position: relative;
+  } 
+
+  .container {
+    max-width: 1560px;
+  }
+}
+.navbar-v {
+    display: block;
+  }
+
+
+/* ======================================================= 
+
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 10px;
+}
+
+.footer h5 {
+  margin: 0;
+}
+.copyright {
+  margin-bottom: 0;
+  font-size: 8px;
+}
+
+*/

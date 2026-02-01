@@ -1,0 +1,113 @@
+
+
+
+.main {
+  flex-grow: 1;
+}
+
+/* header */
+.flexbox_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.address {
+  text-align: right;
+}
+/*
+.contact {
+  text-align: left;
+}*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* 2. Показываем кнопку-иконку для открытия меню на мобильных */
+.header_mobile_button {
+  display: block;
+}
+
+
+/* ======================================================= */
+/* БАЗОВЫЕ СТИЛИ .content (Mobile First: до 1024px) */
+
+.content {
+  /* Делаем .content Grid-контейнером для основного контента и сайдбара */
+  display: grid;
+  /* По умолчанию 1 колонка. Сайдбар будет идти под основным контентом. */
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Добавьте это в секцию BASE STYLES */
+.flexbox_header_end {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Интервал между SignIn и кнопкой меню */
+}
+/* ======================================================= */
+@media (min-width: 768px) {/*
+.container {
+  max-width: 720px;
+}
+*/
+.flexbox_header_end {
+  display: none;
+}
+
+  .navbar {
+    display: block;
+  }
+
+  .navbar ul {
+    display: flex; /* Возвращаем горизонтальную раскладку для десктопа */
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* 2. Скрываем кнопку-иконку на десктопе */
+  .header_mobile_button {
+    display: none;
+  }
+
+  /* 3. Скрываем мобильное меню на десктопе */
+
+}
+/* ======================================================= */
+/* 2. Планшет горизонтальный - ПОЯВЛЕНИЕ САЙДБАРА */
+/* min-width: 1024px */
+@media (min-width: 1024px) {
+  .content {
+    /* Две колонки: широкая (2fr) для основного контента и узкая (1fr) для сайдбара 
+    grid-template-columns: 1fr 2fr;*/
+    gap: 30px;
+  }
+
+}
+
+/* ======================================================= */
+/* 3. Обычный монитор - УЛУЧШЕННАЯ РАСКЛАДКА */
+/* min-width: 1288px */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+/* ======================================================= */
+/* 3. Обычный монитор - УЛУЧШЕННАЯ РАСКЛАДКА */
+/* min-width: 1288px */
+@media (min-width: 1560px) {
+  .container {
+    max-width: 1560px;
+  }
+}
+

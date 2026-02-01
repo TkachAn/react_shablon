@@ -1,0 +1,41 @@
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0 0 0;
+  text-align: center;
+  /*font-size: 14px;*/
+}
+
+.footer h5 {
+  margin: 0 0 15px 0;
+  /*font-size: 16px;*/
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+footer p {
+  margin: 0;
+  font-weight: normal;
+  line-height: 1.5;
+}
+/*footer */
+.flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 40px;
+} 
+.copyright {
+  margin-top: 35px;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .flexbox {
+    gap: 60px;
+  }
+  
+}

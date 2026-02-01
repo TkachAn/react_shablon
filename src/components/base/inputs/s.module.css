@@ -1,0 +1,139 @@
+/* //src/elem/inputs/inputs.module.css - Оптимизированная версия */
+
+/*
+* ======================================
+* 1. BASE CONTROL STYLES (Общие стили для input, select, textarea)
+* ======================================
+*//*
+.baseControl {
+  width: 100%;
+  padding: 8px 14px; /* Увеличим вертикальный паддинг для лучшей читаемости *//*
+  border-radius: 8px;
+  border: 1px solid var(--color-border-normal, #ccc); /* Используем CSS-переменные, если есть *//*
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-sizing: border-box;
+  margin: 5px 0; /* Удалим лишний горизонтальный отступ, если инпут находится внутри inputWrapper *//*
+  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.05); /* Смягчим тень *//*
+}
+*/
+.input,
+.select,
+.textarea {
+  /* ПОЧТИ ПОЛНЫЙ ПОВТОР .baseControl */
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-normal, #ccc);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-sizing: border-box;
+  margin: 5px 0;
+  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.05);
+  /* Индивидуальный отступ */
+  margin-left: 15px; 
+}
+
+.textarea {
+  resize: vertical; /* Разрешить изменение размера только по вертикали */
+}
+
+
+/*
+* ======================================
+* 2. STATUS MODIFIERS (Модификаторы состояния)
+* ======================================
+*/
+
+/* --- Default/Normal State --- */
+.normal {
+  border-color: #ccc;
+  background-color: #fff;
+  color: #000;
+}
+
+/* --- Focus/Accent State --- */
+.accent {
+  background-color: #f0f8ff;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Добавим фокусное кольцо */
+  outline: none; /* Удалим стандартный синий контур */
+  color: #000;
+}
+.input:focus,
+.textarea:focus,
+.select:focus {
+  /* ПОЛНОЕ ПОВТОРЕНИЕ СТИЛЕЙ .accent */
+  background-color: #f0f8ff;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+  color: #000;
+}
+
+
+/* --- Error State --- */
+.error {
+  border-color: #dc3545; /* Красный цвет */
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+  background-color: #fff8f8;
+  color: #dc3545;
+}
+
+/* --- Blocked/Disabled State --- */
+.blocked {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+
+/*
+* ======================================
+* 3. WRAPPER & LABEL (Обертка и Лейбл)
+* ======================================
+*/
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px; /* Отступ между полями */
+}
+
+.label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  align-self: flex-start; /* Выравнивание лейбла по левому краю в колонке */
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 4px;
+    margin-left: 15px;
+    align-self: flex-start;
+}
+
+/*
+* ======================================
+* 4. MEDIA QUERIES (Адаптивность)
+* ======================================
+*/
+@media (min-width: 480px) {
+  .inputWrapper {
+    flex-direction: row;
+    align-items: center; /* Выравнивание по центру по вертикали */
+  }
+  
+  .label {
+    /* Обеспечиваем, чтобы лейбл занимал фиксированное место или имел минимальную ширину */
+    min-width: 100px; 
+    margin-bottom: 0;
+  }
+}

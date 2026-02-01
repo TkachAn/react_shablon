@@ -1,0 +1,152 @@
+/* s.module.css - Mobile First Approach */
+
+/* ======================================= */
+/* 1. БАЗОВЫЕ СТИЛИ (MOBILE / ДО 768px)  */
+/* ======================================= */
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    gap: 30px;
+}
+
+.item {
+    /* 1 элемент в ряд (Мобильный) */
+    flex-basis: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Контейнер подписи (s.bgTitle) - ВСЕГДА ВИДИМ на маленьких экранах */
+.bgTitle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    /* Адаптивная высота */
+    padding: 15px;
+    /* Уменьшенные отступы для мобильных */
+
+    background-color: rgba(47, 48, 58, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Обязательно: на мобильных opacity: 1 по умолчанию! */
+    opacity: 1;
+}
+
+.imgTitle {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+    /* Чуть меньше для мобильных */
+    line-height: 1.17;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ======================================= */
+/* 2. ПЛАНШЕТЫ (768px и выше)           */
+/* ======================================= *//*
+@media screen and (min-width: 768px) {
+    .item {
+       
+        flex-basis: calc((100% - 30px) / 2);
+    }
+
+
+
+    .imgTitle {
+        font-size: 18px;
+        
+    }
+}*/
+
+/* ======================================= */
+/* 2. ПЛАНШЕТЫ (768px до 1199px) - СЛАЙС  */
+/* ======================================= */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+
+    /* 1. Контейнер галереи (ul.gallery) */
+    .gallery {
+        /* ГЛАВНОЕ: ОТКЛЮЧАЕМ перенос строк */
+        flex-wrap: nowrap;
+
+        /* ГЛАВНОЕ: ДОБАВЛЯЕМ горизонтальную прокрутку */
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    /* 2. Элемент списка (li.item) */
+    .item {
+        /* Делаем элементы НЕ сжимаемыми и НЕ растяжимыми */
+        flex-shrink: 0;
+        flex-grow: 0;
+
+        /* Ширина для 2х элементов в ряду (должно умещаться 2 элемента + немного места для следующего) */
+        flex-basis: calc((100% - 30px) / 2);
+    }
+
+    /* Стили для подписи (На планшетах она видима по умолчанию) */
+    .bgTitle {
+        opacity: 1;
+        /* Сохраняем видимость */
+    }
+
+    .imgTitle {
+        font-size: 18px;
+    }
+
+    /* Убеждаемся, что Hover-эффекты не активны */
+    .item:hover .bgTitle {
+        opacity: 1;
+    }
+
+    .item:hover {
+        box-shadow: none;
+    }
+}
+
+/* ======================================= */
+/* 3. ДЕСКТОП (1200px и выше)           */
+/* ======================================= */
+@media screen and (min-width: 1200px) {
+    .item {
+        /* 3 элемента в ряд */
+        flex-basis: calc((100% - 60px) / 3);
+    }
+
+    /* СКРЫВАНИЕ ПОДПИСИ ПО УМОЛЧАНИЮ (Только на десктопе!) */
+    .bgTitle {
+        opacity: 0;
+        height: 70px;
+        /* Фиксированная высота для десктопа */
+        padding: 24px;
+        /* Восстанавливаем отступы */
+        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Активация HOVER-эффекта (Только на десктопе!) */
+    .item:hover .bgTitle {
+        opacity: 1;
+        /* Показывает подпись при наведении */
+    }
+
+    .item:hover {
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+            0px 4px 4px rgba(0, 0, 0, 0.06),
+            1px 4px 6px rgba(0, 0, 0, 0.16);
+    }
+}
