@@ -33,3 +33,32 @@
   font-weight: bold !important;
   border-left: 3px solid var(--color-primary) !important;
 }
+.nav_item {
+  list-style: none;
+  position: relative;
+}
+
+/* Линия-индикатор вложенности (как в коде VS Code) */
+.nav_item .nav_list {
+  border-left: 1px solid rgba(0, 112, 243, 0.1);
+  margin-left: 10px;
+}
+
+.nav_link {
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--color-text-main);
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.sub_link {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.nav_link:hover {
+  background: rgba(0, 112, 243, 0.05);
+  color: var(--color-primary);
+}

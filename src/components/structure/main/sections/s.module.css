@@ -1,67 +1,114 @@
+/* --- БАЗОВЫЕ СТИЛИ КОМПОНЕНТОВ --- */
 .asideLeft {
-  display: none;
-  /*
-  background-color: #6fabe7;*/
   padding: 20px;
   border-right: 1px solid #ddd;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
-
 .asideRight {
-  display: none;
-  /*
-  background-color: #1e67af;*/
   padding: 20px;
   border-left: 1px solid #ddd;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.aside_title {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .section {
+  padding: 20px;
   text-align: center;
   margin-bottom: 60px;
-  /*background-color: #666666;*/
-
 }
 .section_flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 20px;
 }
-/*
-@media (min-width: 1200px) {
-  .section {
-    padding-top: 94px;
-    padding-bottom: 94px;
-  }
-}
-*/
 .section_title {
   font-size: 24px;
-  
-
   padding: 30px 0;
   margin-bottom: 30px;
 }
 
 .article {
   text-align: left;
+  padding: 20px;
   margin-bottom: 20px;
 }
-
 .article_title {
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.asideLeft {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* --- ПРОДВИНУТЫЙ СЕМАНТИЧЕСКИЙ РЕНТГЕН --- */
+
+/* --- СЕМАНТИЧЕСКИЙ РЕНТГЕН ПО НАЗВАНИЯМ (TITLE / ID) --- */
+
+/* 1. СЕКЦИИ (Синий) */
+:global(body.show-debug) section {
+  outline: 2px dashed #0070f3 !important;
+  outline-offset: -2px;
+  position: relative !important;
+  margin-top: 30px !important;
+  background-color: rgba(0, 112, 243, 0.03) !important;
 }
 
-.asideRight {
-  font-size: 18px;
-  margin-bottom: 10px;
+:global(body.show-debug) section::before {
+  /* Сначала пробует взять title, если его нет — берет id */
+  content: "SECTION: " attr(title); 
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  background: #0070f3;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 4px;
+  z-index: 100;
 }
 
-.aside_title {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* 2. АРТИКЛИ (Красный) */
+:global(body.show-debug) article {
+  outline: 2px dotted #e74c3c !important;
+  outline-offset: -4px;
+  position: relative !important;
+  padding: 20px !important;
+  background-color: rgba(231, 76, 60, 0.03) !important;
+}
+
+:global(body.show-debug) article::before {
+  content: "ARTICLE: " attr(title);
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #e74c3c;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 8px;
+  border-radius: 4px;
+  z-index: 101;
+}
+
+/* 3. КОНТЕЙНЕР (Пурпурный) - здесь оставляем ID или просто название */
+:global(body.show-debug) [class*="container"] {
+  outline: 3px double #9b59b6 !important;
+  position: relative !important;
+}
+
+:global(body.show-debug) [class*="container"]::after {
+  content: "ГРАНИЦЫ КОНТЕЙНЕРА";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #9b59b6;
+  color: white;
+  font-size: 9px;
+  padding: 1px 12px;
+  border-radius: 10px;
 }

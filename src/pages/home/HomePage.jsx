@@ -2,15 +2,21 @@ import { Header } from "../../components/structure/header/header";
 import { Footer } from "../../components/structure/footer/footer";
 import { Main } from "../../components/structure/main/main";
 import { Hero } from "../../components/structure/main/hero/hero";
-import { Section } from "../../components/structure/main/sections/sections";
-import { Advantages } from "./content/advantages/advantages";
+import {
+  AsideLeft,
+  Section,
+} from "../../components/structure/main/sections/sections";
+
 import { HeroContent } from "./content/hero/HeroContent";
 import Clients from "./content/clients/clients";
 import { Craft } from "./content/craft/craft";
 import Developers from "./content/developers/developers";
 import { Container } from "../../components/structure/container/container";
 import { Flex } from "../../components/structure/main/sections/sections";
-import { SidePanel } from "../../components/structure/header/header_v";
+//import { SidePanel } from "../../components/structure/header/header_v";
+import { AnatomyOfaPage } from "./content/anatomy/AnatomyOfaPage";
+//import { AutoNav } from "../../components/structure/autoNav/AutoNav";
+import { SidePanel } from "./content/sidePanel/SidePanel";
 
 export function HomePage() {
   return (
@@ -24,8 +30,9 @@ export function HomePage() {
             <Hero id="hero">
               <HeroContent />
             </Hero>
-            <Section id="advantages">
-              <Advantages />
+
+            <Section id="AnatomyOfaPage">
+              <AnatomyOfaPage />
             </Section>
             <Section title="Наши услуги" id="services">
               <Craft />

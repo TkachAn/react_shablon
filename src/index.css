@@ -106,3 +106,7 @@ body {
 [id] {
   scroll-margin-top: 80px;
 }
+/* В index.css оставляем только это */
+body.show-debug {
+  --debug-mode: 1;
+}

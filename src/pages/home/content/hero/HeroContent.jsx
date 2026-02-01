@@ -1,4 +1,6 @@
 import s from "./sh.module.css";
+//import { Headphones } from "lucide-react";
+import { NormButton } from "../../../../components/base/buttons/buttons";
 
 export function HeroContent() {
   return (
@@ -11,9 +13,19 @@ export function HeroContent() {
         используйте их для быстрой сборки семантических сайтов.
       </p>
       <div className={s.hero_actions}>
-        <button className={s.btn_primary}>Изучить компоненты</button>
-        <button className={s.btn_secondary}>🎧 Слушать AI-обзор</button>
+        {/* Используем твою акцентную кнопку */}
+        <NormButton status="accent">Изучить компоненты</NormButton>
+
+        {/* Твоя обычная кнопка с добавлением иконки */}
+        <NormButton
+          status="normal"
+          style={{ display: "flex", alignItems: "center", gap: "8px" }}
+    >
+         
+          Слушать AI-обзор
+        </NormButton>
       </div>
     </div>
   );
 }
+/*  <Headphones size={20} /> */

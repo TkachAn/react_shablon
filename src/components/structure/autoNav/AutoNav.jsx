@@ -1,61 +1,63 @@
-import React, { useState, useEffect } from "react";
-import s from "./AutoNav.module.css"; // Импортируем твои модульные стили
+"use client";
+import { useEffect, useState } from "react";
+import s from "./s.module.css";
 
-export function AutoNav({ containerId }) {
-  const [links, setLinks] = useState([]);
-  const [activeId, setActiveId] = useState("");
+export function AutoNav() {
+  const [navTree, setNavTree] = useState([]);
 
   useEffect(() => {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    // Функция для поиска секций внутри элемента
+    const getSections = (container) => {
+      // Ищем только прямых потомков-секций, чтобы не дублировать
+      const elements = Array.from(
+        container.querySelectorAll(
+          ":scope > section[id], :scope > * > section[id]",
+        ),
+      );
 
-    const sections = container.querySelectorAll("section[id]");
-    const extractedLinks = Array.from(sections).map((section) => {
-      const titleElement = section.querySelector("h2");
-      return {
-        id: section.id,
-        title: titleElement ? titleElement.innerText : section.id,
-      };
-    });
-    setLinks(extractedLinks);
-
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px",
-      threshold: 0,
+      return elements.map((sec) => ({
+        id: sec.id,
+        title: sec.getAttribute("title") || sec.id,
+        // Рекурсивно ищем секции внутри этой секции
+        children: getSections(sec),
+      }));
     };
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
-        }
-      });
-    };
+    // Начинаем поиск с основного контента (Main)
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      setNavTree(getSections(mainElement));
+    }
+  }, []);
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [containerId]);
+  // Рекурсивный рендер списка
+  const renderList = (items, level = 0) => (
+    <ul
+      className={s.nav_list}
+      style={{ paddingLeft: level > 0 ? "15px" : "0" }}
+    >
+      {items.map((item) => (
+        <li key={item.id} className={s.nav_item}>
+          <a
+            href={`#${item.id}`}
+            className={`${s.nav_link} ${level > 0 ? s.sub_link : ""}`}
+          >
+            {item.title}
+          </a>
+          {item.children.length > 0 && renderList(item.children, level + 1)}
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
-    <nav className={s.nav}>
-      <ul className={s.list}>
-        {links.map((link) => (
-          <li key={link.id}>
-            <a
-              href={`#${link.id}`}
-              className={`${s.link} ${activeId === link.id ? s.active : ""}`}
-            >
-              {link.title}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <nav className={s.autonav}>
+      <h4 className={s.nav_title}>Структура сайта</h4>
+      {navTree.length > 0 ? (
+        renderList(navTree)
+      ) : (
+        <p className={s.empty}>Секции не найдены</p>
+      )}
     </nav>
   );
 }
