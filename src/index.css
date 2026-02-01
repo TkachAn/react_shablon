@@ -2,10 +2,8 @@
 |--------------------------------------------------------------------------
 | 1. CSS Reset (Полный сброс стилей)
 |--------------------------------------------------------------------------
-| Основано на "Reset" или "Normalize" для единообразия.
 */
 
-/* 1.1 Box-sizing и общие сбросы отступов */
 *,
 *::before,
 *::after {
@@ -14,48 +12,43 @@
   padding: 0;
 }
 
+/* 1.1 Типографика */
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0;
+  font-weight: bold;
+}
 
-/* 1.2 Сброс стилей для типографики (Заголовки, Параграфы) */
 p, blockquote {
-  /* Убираем стандартный margin/padding, который задают браузеры */
-  margin: 0 0 0 0; /* Оставляем небольшой отступ снизу для блочного разделения */
-  font-weight: inherit; /* Заголовки наследуют жирность, чтобы не было конфликтов */
-  font-weight:bold;
+  margin-bottom: 10px; /* Отступ снизу для читаемости */
+  font-weight: normal; /* Вернул нормальную жирность для текста */
 }
-/* 1.2 Сброс стилей для типографики (Заголовки, Параграфы) */
-h1, h2, h3, h4, h5, h6{
- margin: 10px 0;
-}
-/* 1.3 Сброс стилей для Списков */
+
 ul, ol {
-  list-style: none; /* Убираем маркеры/нумерацию */
-  margin: 0;
-  padding: 0;
+  list-style: none;
 }
 
-/* 1.4 Сброс стилей для Ссылок */
 a {
-  text-decoration: none; /* Убираем подчеркивание */
-  color: inherit; /* Наследуем цвет текста от родителя */
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s; /* Плавность для всех ссылок */
 }
 
-/* 1.5 Сброс стилей для Изображений */
 img {
-  display: block; /* Избегаем нежелательных нижних отступов */
-  max-width: 100%; /* Гарантируем, что изображения не выходят за пределы контейнера */
+  display: block;
+  max-width: 100%;
   height: auto;
 }
 
-/* 1.6 Сброс стилей для Форм */
 input, button, textarea, select {
-  font: inherit; /* Наследуем шрифт от body */
+  font: inherit;
+  outline: none; /* Убираем стандартную обводку */
 }
 
-/* 1.7 Сброс для HTML5 элементов */
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-  display: block;
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -64,54 +57,52 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 */
 
 :root {
+    --color-primary: #e74c3c;
+    --color-accent: #3498db;
+    --color-accent-dark: #2980b9;
+    --color-text-main: #333333;
+    --color-text-secondary: #666666;
+    --color-background-light: #f8f8f8;
 
-    --color-primary: #e74c3c; /* Красный, подходит для ошибки 404 и акцентов */
-    --color-accent: #3498db;  /* Синий, для кнопок и ссылок */
-    --color-accent-dark: #2980b9; /* Более темный синий для эффекта hover */
-    --color-text-main: #333333; /* Основной черный/темно-серый текст */
-    --color-text-secondary: #666666; /* Серый текст для описания */
-    --color-background-light: #f8f8f8; /* Светлый фон (для секций) */
-
-    /* 2. Отступы и размеры */
     --spacing-xs: 5px;
     --spacing-sm: 10px;
-    --spacing-md: 20px; /* Стандартный отступ */
+    --spacing-md: 20px;
     --spacing-lg: 40px;
-/* 3. Типографика */
+
     --font-size-base: 16px;
     --line-height-base: 1.5;
-
-    /* 🚀 4. Брейкпоинты для Media Queries (Mobile-first подход) */
-    --breakpoint-sm: 768px; /* Планшеты (Tablet) и выше */
-    --breakpoint-md: 1024px; /* Десктопы (Desktop) и выше */
-    --breakpoint-lg: 1280px; /* Большие Десктопы (Large Desktop) и выше */
-    --breakpoint-xl: 1440px; /* HD и выше */
+    
+    /* Брейкпоинты (для справки) */
+    /* sm: 768px, md: 1024px, lg: 1280px */
 }
 
+/*
+|--------------------------------------------------------------------------
+| 3. Global Styles
+|--------------------------------------------------------------------------
+*/
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: inherit;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#root{
-   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: var(--color-text-main);
+  line-height: var(--line-height-base);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Растягивает приложение на всю высоту экрана */
+}
+
+/* Отступ для якорных ссылок (чтобы хедер не перекрывал заголовок) */
 [id] {
-  scroll-margin-top: 80px; /* Высота вашего хедера */
+  scroll-margin-top: 80px;
 }
