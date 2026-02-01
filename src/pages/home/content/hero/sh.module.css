@@ -1,4 +1,13 @@
 /* Добавь это в s.module.css или HomePage.module.css */
+.hero {
+  padding: 100px 20px; /* Больше свободного пространства сверху и снизу */
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%); /* Едва заметный градиент для объема */
+}
+
+.section_title {
+  font-weight: 800; /* Делаем заголовки более уверенными */
+  letter-spacing: -0.02em; /* Чуть сближаем буквы для "дизайнерского" вида */
+}
 
 .hero_content {
   max-width: 800px;
