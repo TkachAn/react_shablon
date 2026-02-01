@@ -1,0 +1,35 @@
+.nav {
+  position: sticky;
+  top: 100px;
+  padding: var(--spacing-sm);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link {
+  transition: 0.3s;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-secondary);
+  font-weight: normal;
+  border-left: 3px solid transparent;
+  padding-left: 10px;
+  display: block;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+/* Класс для активного состояния */
+.active {
+  color: var(--color-primary) !important;
+  font-weight: bold !important;
+  border-left: 3px solid var(--color-primary) !important;
+}
