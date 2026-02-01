@@ -1,0 +1,61 @@
+.autonav {
+  padding: 20px 10px;
+}
+
+.nav_title {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.nav_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav_link {
+  font-size: 14px;
+  color: var(--color-text-main);
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: block;
+}
+
+.nav_link:hover {
+  background: var(--color-background-light);
+  color: var(--color-primary);
+  padding-left: 15px; /* Маленькая анимация сдвига */
+}
+
+.nav_item {
+  list-style: none;
+  position: relative;
+}
+
+/* Линия-индикатор вложенности (как в коде VS Code) */
+.nav_item .nav_list {
+  border-left: 1px solid rgba(0, 112, 243, 0.1);
+  margin-left: 10px;
+}
+
+.nav_link {
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--color-text-main);
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.sub_link {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.nav_link:hover {
+  background: rgba(0, 112, 243, 0.05);
+  color: var(--color-primary);
+}

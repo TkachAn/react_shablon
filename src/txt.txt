@@ -1,0 +1,75 @@
+
+/* Временный стиль для отладки структуры */
+:global(.show-debug) section { border: 1px dashed #0070f3 !important; }
+:global(.show-debug) article { border: 1px dotted crimson !important; }
+:global(.show-debug) div[class*="flex"] { background-color: rgba(0, 112, 243, 0.05); }
+
+/* --- СЕМАНТИЧЕСКИЙ РЕНТГЕН --- */
+
+/* Общие правила для всех подсвеченных блоков */
+body.show-debug header,
+body.show-debug footer,
+body.show-debug main,
+body.show-debug aside,
+body.show-debug nav,
+body.show-debug section,
+body.show-debug article {
+  outline: 2px solid !important;
+  outline-offset: -2px;
+  position: relative !important;
+  margin: 20px 0 !important;
+  padding: 20px !important;
+  transition: all 0.3s ease;
+}
+
+/* 1. HEADER (Желтый) */
+body.show-debug header {
+  outline-color: #f1c40f !important;
+  background-color: rgba(241, 196, 15, 0.05) !important;
+}
+body.show-debug header::after { content: "<HEADER>"; background: #f1c40f; top: 0; left: 0; position: absolute; color: #000; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 2. MAIN (Фиолетовый) */
+body.show-debug main {
+  outline-color: #9b59b6 !important;
+  background-color: rgba(155, 89, 182, 0.05) !important;
+}
+body.show-debug main::after { content: "<MAIN>"; background: #9b59b6; top: 0; left: 50%; transform: translateX(-50%); position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 3. ASIDE / SidePanel (Оранжевый) */
+body.show-debug aside, 
+body.show-debug .side-panel {
+  outline-color: #e67e22 !important;
+  background-color: rgba(230, 126, 34, 0.05) !important;
+}
+body.show-debug aside::after { content: "<ASIDE>"; background: #e67e22; top: 0; right: 0; position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 4. SECTION (Синий) */
+body.show-debug section {
+  outline-color: #0070f3 !important;
+  outline-style: dashed !important;
+  background-color: rgba(0, 112, 243, 0.03) !important;
+}
+body.show-debug section::after { content: "<SECTION>"; background: #0070f3; bottom: 0; left: 0; position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 5. ARTICLE (Красный) */
+body.show-debug article {
+  outline-color: #e74c3c !important;
+  outline-style: dotted !important;
+  background-color: rgba(231, 76, 60, 0.03) !important;
+}
+body.show-debug article::after { content: "<ARTICLE>"; background: #e74c3c; bottom: 0; right: 0; position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 6. NAV (Бирюзовый) */
+body.show-debug nav {
+  outline-color: #1abc9c !important;
+  background-color: rgba(26, 188, 156, 0.05) !important;
+}
+body.show-debug nav::after { content: "<NAV>"; background: #1abc9c; top: 0; left: 20px; position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
+
+/* 7. FOOTER (Серый) */
+body.show-debug footer {
+  outline-color: #7f8c8d !important;
+  background-color: rgba(127, 140, 141, 0.05) !important;
+}
+body.show-debug footer::after { content: "<FOOTER>"; background: #7f8c8d; bottom: 0; left: 50%; transform: translateX(-50%); position: absolute; color: #fff; font-size: 10px; padding: 2px 6px; font-weight: bold; z-index: 110; }
