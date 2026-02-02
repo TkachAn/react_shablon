@@ -1,11 +1,25 @@
-/* Находим класс, который отвечает за SidePanel */
+/* --- 1. MOBILE FIRST (По умолчанию) --- */
 .side_panel {
-  position: sticky; /* "Приклеиваем" элемент */
-  top: 80px;        /* Отступ сверху, чтобы хедер не перекрывал панель */
-  height: calc(100vh - 80px); /* Высота на весь экран минус высота хедера */
-  overflow-y: auto; /* Если пунктов меню станет слишком много, появится прокрутка внутри панели */
-  
-  /* Декоративные правки для удобства */
-  width: 250px;     /* Фиксируем ширину, чтобы контент не прыгал */
-  flex-shrink: 0;   /* Запрещаем флексу сжимать сайдбар */
+  width: 100%;             /* На мобилках во всю ширину */
+  position: static;        /* В обычном потоке, не фиксируем */
+  height: auto;            /* Высота зависит от контента */
+  overflow-y: visible;     /* Прокрутка не нужна, он и так вверху */
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  background: var(--color-background-soft, #f9f9f9);
+}
+
+/* --- 2. DESKTOP (от 1400px) --- */
+@media (min-width: 1440px) {
+  .side_panel {
+    position: sticky;      /* "Приклеиваем" на десктопе */
+    top: 80px;             /* Отступ от хедера */
+    height: calc(100vh - 80px); /* На всю высоту окна */
+    width: 280px;          /* Фиксированная ширина */
+    flex-shrink: 0;        /* Чтобы flex не сжимал панель */
+    overflow-y: auto;      /* Внутренняя прокрутка, если меню длинное */
+    border-bottom: none;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+  }
 }

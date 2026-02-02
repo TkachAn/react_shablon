@@ -1,3 +1,4 @@
+/*
 .nav {
   position: sticky;
   top: 100px;
@@ -27,7 +28,7 @@
   color: var(--color-accent);
 }
 
-/* Класс для активного состояния */
+/* Класс для активного состояния *//*
 .active {
   color: var(--color-primary) !important;
   font-weight: bold !important;
@@ -38,7 +39,7 @@
   position: relative;
 }
 
-/* Линия-индикатор вложенности (как в коде VS Code) */
+/* Линия-индикатор вложенности (как в коде VS Code) *//*
 .nav_item .nav_list {
   border-left: 1px solid rgba(0, 112, 243, 0.1);
   margin-left: 10px;
@@ -61,4 +62,77 @@
 .nav_link:hover {
   background: rgba(0, 112, 243, 0.05);
   color: var(--color-primary);
+}*/
+
+/* --- 1. MOBILE NAV (По умолчанию) --- */
+
+.autonav {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+}
+
+.nav_title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--color-text-secondary);
+}
+
+.nav_list {
+  list-style: none;
+  display: flex; /* На мобилках - в ряд */
+  flex-wrap: wrap; /* Чтобы не вылазило за экран */
+  gap: 8px;
+  padding-left: 0 !important; /* Убираем отступы вложенности на мобилках */
+}
+
+.nav_link {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+/* Скрываем линии вложенности на мобилках, чтобы не мусорить */
+.nav_item .nav_list {
+  border-left: none;
+  margin-left: 0;
+  display: contents; /* Раскрываем вложенные списки в общий поток */
+}
+
+/* --- 2. DESKTOP NAV (от 1440px) --- */
+
+@media (min-width: 1440px) {
+  .nav_list {
+    display: flex;
+    flex-direction: column; /* Возвращаем в колонку */
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+
+  .nav_item .nav_list {
+    display: block; /* Возвращаем блочную структуру для дерева */
+    border-left: 1px solid rgba(0, 112, 243, 0.1);
+    margin-left: 10px;
+    padding-left: 15px !important;
+  }
+
+  .nav_link {
+    display: block;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .sub_link {
+    font-size: 13px;
+    opacity: 0.8;
+  }
 }

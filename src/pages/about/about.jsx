@@ -2,8 +2,8 @@ import { Header } from "../../components/structure/header/header";
 import { Footer } from "../../components/structure/footer/footer";
 import { Main } from "../../components/structure/main/main";
 import { Flex, Section } from "../../components/structure/main/sections/sections";
-import { Article } from "../../components/structure/main/article/artice";
-import { Article1Content } from "./1articleContent";
+
+import { Article1Content } from "./content/1articleContent";
 import { AsideLeft } from "../../components/structure/main/sections/sections";
 import { AsideRight } from "../../components/structure/main/sections/sections";
 import { SidebarNav } from "../../components/structure/header/navDetails/navigations";
@@ -25,9 +25,9 @@ export function AboutPage() {
         </AsideLeft>
 
         <Section title={"About Section"}>
-          <Article title="First Article">
+          
             <Article1Content />
-          </Article>
+          
         </Section>
 
         <AsideRight title={"Aside Right Section"}>

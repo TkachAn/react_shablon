@@ -22,7 +22,7 @@
   margin-bottom: 60px;
 }
 .section_flex {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
@@ -41,6 +41,40 @@
 .article_title {
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+/* --- 3. FULL HD (от 1400px) --- */
+@media (min-width: 1440px) {
+  .section_flex {
+    display: flex; /* Только здесь включаем колонки в ряд */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .asideLeft {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky; /* Включаем фиксацию только на десктопе */
+    top: 100px;
+    border-right: 1px solid #ddd;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .section {
+    text-align: center; /* Возвращаем центрирование на больших экранах */
+  }
+}
+
+/* --- 4. SUPER FULL HD (от 1920px) --- */
+@media (min-width: 1920px) {
+  .section_title {
+    font-size: 28px; /* Укрупняем заголовки для больших ТВ/мониторов */
+  }
+  .asideLeft {
+    width: 350px; /* Больше места под навигацию */
+  }
 }
 
 /* --- ПРОДВИНУТЫЙ СЕМАНТИЧЕСКИЙ РЕНТГЕН --- */
