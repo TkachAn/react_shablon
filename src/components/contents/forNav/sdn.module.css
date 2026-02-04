@@ -1,0 +1,61 @@
+.nav {
+  position: relative; /* Чтобы меню позиционировалось относительно этой точки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burgerWrapper {
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.menuList {
+  /* Скрыто по умолчанию */
+  display: none; 
+  
+  /* Позиционирование: выпадает под хедером */
+  position:fixed;
+  top: 80px; /* Отступ сверху, чтобы не закрывать кнопку */
+  left: 0;
+  width: 100vw;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  
+  margin: 0 auto;
+  padding: 10px 0;
+  list-style: none;
+  z-index: 1000;
+}
+
+/* Класс открытия */
+.menuOpen {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.menuItem {
+  width: 100%;
+}
+
+.link {
+  display: block;
+  padding: 12px 20px; /* Размер под палец */
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.link:hover {
+  background-color: #f5f5f5;
+  color: #a38ba3;
+}
