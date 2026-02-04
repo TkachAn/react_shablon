@@ -1,4 +1,25 @@
 /* --- БАЗОВЫЕ СТИЛИ КОМПОНЕНТОВ --- */
+header {
+  background-color: rgb(194, 177, 194);
+  margin-bottom: 40px;
+  /*width: 100%;*/
+}
+.headerSet {
+  max-width: 100%;
+  padding: 0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  text-align: center;
+}
+
 .asideLeft {
   padding: 20px;
   border-right: 1px solid #ddd;
@@ -92,7 +113,7 @@
 
 :global(body.show-debug) section::before {
   /* Сначала пробует взять title, если его нет — берет id */
-  content: "SECTION: " attr(title); 
+  content: "SECTION: " attr(title);
   position: absolute;
   top: -12px;
   left: 10px;

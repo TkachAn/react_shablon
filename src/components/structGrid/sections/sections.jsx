@@ -1,11 +1,15 @@
-// src/components/structure/Section/Section.jsx
-import { Container } from "../../container/container";
+// src/components/strucGrig/Section/Section.jsx
+import { Container } from "../../structGrid/container/container";
 import s from "./s.module.css";
 
-export function Header({ children }) {
+export function Header({ children, id }) {
   return (
-    <header className={s.header}>
-      <Container>{children}</Container>
+    <header id={id}>
+      <Container className={s.headerSet}>
+        <div className={s.header}>
+          {children}
+        </div>
+      </Container>
     </header>
   );
 }

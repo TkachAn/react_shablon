@@ -1,5 +1,4 @@
-// src/elem/button/iconButtons.jsx
-// src/elem/button/iconButtons.jsx
+// src/base/buttons/IconButtons
 import styles from "./button.module.css";
 import { Menu, X, Trash, Pencil, Plus, UserPlus, UserPen, LogOut } from "lucide-react";
 

@@ -1,10 +1,10 @@
 import { NormButton } from "../../../../components/base/buttons/buttons";
-import { Article, Flex, Section } from "../../../../components/structure/main/sections/sections";
+import { Article, Flex} from "../../../../components/structure/main/sections/sections";
 //import s from "./s.module.css";
 
 export function AnatomyOfaPage() {
   return (
-    <Section title="Как устроен этот конструктор" id="architecture">
+    <>
       <Article title="Модульная структура">
         <p>
           Каждый элемент на этом сайте — это независимый компонент. Мы
@@ -43,6 +43,6 @@ export function AnatomyOfaPage() {
           <NormButton status="normal">Узнать больше</NormButton>
         </Flex>
       </Article>
-    </Section>
+    </>
   );
     }
