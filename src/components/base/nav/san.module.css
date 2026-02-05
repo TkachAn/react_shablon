@@ -1,0 +1,70 @@
+/* Базовый липкий контейнер */
+.autoNavSticky {
+  position: sticky;
+  top: 60px; /* Высота хедера */
+  z-index: 2000;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+/* МОБИЛКА: Вертикальный список */
+.navList {
+  list-style: none;
+  padding: 15px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navLink {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 12px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* ПЛАНШЕТ И ПК: Горизонтальная полоса */
+@media (min-width: 768px) {
+  .navList {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px 50px;
+    justify-content: flex-start;
+  }
+  
+  .navItem { width: auto; }
+
+  .navLink {
+    background: transparent;
+    padding: 5px 15px;
+    font-size: 14px;
+  }
+  
+  .floatButton { display: none; } /* На ПК кнопка не нужна */
+}
+
+/* Плавающая кнопка для мобилок */
+@media (max-width: 767px) {
+  .floatButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #c2b1c2;
+    color: white;
+    border: none;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 3000;
+    cursor: pointer;
+  }
+}
