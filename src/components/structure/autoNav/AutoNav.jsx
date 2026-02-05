@@ -1,63 +1,46 @@
-"use client";
+//"use client";
 import { useEffect, useState } from "react";
-import s from "./s.module.css";
+import { Link } from "react-router-dom";
+//import s from "./s.module.css";
 
-export function AutoNav() {
-  const [navTree, setNavTree] = useState([]);
+export const AutoNav = () => {
+  const [navItems, setNavItems] = useState([]);
 
   useEffect(() => {
-    // Функция для поиска секций внутри элемента
-    const getSections = (container) => {
-      // Ищем только прямых потомков-секций, чтобы не дублировать
-      const elements = Array.from(
-        container.querySelectorAll(
-          ":scope > section[id], :scope > * > section[id]",
-        ),
-      );
+    // 1. Ищем все элементы, у которых есть и 'id', и 'title'
+    // В твоем коде это компоненты Section
+    const elements = document.querySelectorAll("[id][title]");
 
-      return elements.map((sec) => ({
-        id: sec.id,
-        title: sec.getAttribute("title") || sec.id,
-        // Рекурсивно ищем секции внутри этой секции
-        children: getSections(sec),
-      }));
-    };
+    // 2. Преобразуем NodeList в удобный массив объектов
+    const items = Array.from(elements).map((el) => ({
+      id: el.getAttribute("id"),
+      title: el.getAttribute("title"),
+    }));
 
-    // Начинаем поиск с основного контента (Main)
-    const mainElement = document.querySelector("main");
-    if (mainElement) {
-      setNavTree(getSections(mainElement));
-    }
-  }, []);
+    setNavItems(items);
+  }, []); // Пустой массив зависимостей: ищем элементы один раз при монтировании
 
-  // Рекурсивный рендер списка
-  const renderList = (items, level = 0) => (
-    <ul
-      className={s.nav_list}
-      style={{ paddingLeft: level > 0 ? "15px" : "0" }}
-    >
-      {items.map((item) => (
-        <li key={item.id} className={s.nav_item}>
-          <a
-            href={`#${item.id}`}
-            className={`${s.nav_link} ${level > 0 ? s.sub_link : ""}`}
-          >
-            {item.title}
-          </a>
-          {item.children.length > 0 && renderList(item.children, level + 1)}
-        </li>
-      ))}
-    </ul>
-  );
+  // Если секции с заголовками не найдены, ничего не рендерим
+  if (navItems.length === 0) return null;
 
   return (
-    <nav className={s.autonav}>
-      <h4 className={s.nav_title}>Структура сайта</h4>
-      {navTree.length > 0 ? (
-        renderList(navTree)
-      ) : (
-        <p className={s.empty}>Секции не найдены</p>
-      )}
+    <nav className="auto-navigation">
+      <ul style={{ listStyle: "none", display: "flex", gap: "15px" }}>
+        {navItems.map((item) => (
+          <li key={item.id}>
+            {/* Используем Link, как ты и просил */}
+            <Link
+              to={item.id}
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              // Если используешь react-scroll, можно добавить:
+              // smooth={true}
+              // duration={500}
+            >
+              {item.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
-}
+};

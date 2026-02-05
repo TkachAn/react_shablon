@@ -1,4 +1,4 @@
-import { Auth, LogoType, Navigation } from "../../components/bloks/bloks";
+import { Auth, LogoType } from "../../components/bloks/bloks";
 import { DinNav } from "../../components/contents/forNav/DinNav"; 
 import { Container } from "../../components/structGrid/container/container";
 import {
@@ -12,6 +12,7 @@ import {
   Main,
   Section,
 } from "../../components/structGrid/sections/sections";
+import { AutoNav } from "../../components/structure/autoNav/AutoNav";
 
 export function Hp() {
   return (
@@ -21,6 +22,8 @@ export function Hp() {
         <DinNav/>
         <Auth>Авторизация</Auth>
       </Header>
+      <AutoNav/>
+      
       <Container>
         <Grid>
           <AsideLeft>Меню сайта</AsideLeft>
