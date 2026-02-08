@@ -1,292 +1,223 @@
-import React from "react";
+import React, { useState, forwardRef } from "react";
 import styles from "./ingpt.module.css";
 
 /* =========================
-   HELPERS / VALIDATORS
+   BASE LAYOUT
 ========================= */
-
-const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-const isValidPhone = (value) => /^\+?\d{10,15}$/.test(value);
+const BaseInput = forwardRef(
+  ({ label, error, children, className = "" }, ref) => (
+    <div className={`${styles.base} ${className}`} ref={ref}>
+      {label && <label className={styles.label}>{label}</label>}
+      <div className={styles.control}>{children}</div>
+      {error && <div className={styles.error}>{error}</div>}
+    </div>
+  ),
+);
 
 /* =========================
-   PRICE INPUT HELPERS
+   CONFIRM BLOCK (Composition)
 ========================= */
-
-const parsePriceDigits = (value) => value.replace(/\D/g, "");
-
-const formatPriceFromDigits = (digits) => {
-  if (!digits) return "0.00";
-
-  const padded = digits.padStart(3, "0");
-  const major = padded.slice(0, -2);
-  const minor = padded.slice(-2);
-
-  return `${Number(major)}.${minor}`;
-};
-
-/* =========================
-   HOOKS
-========================= */
-
-const useControlledInput = ({
-  initialValue = "",
-  validator,
-  onValidation,
-  onChange,
-  onBlur,
-}) => {
-  const [value, setValue] = React.useState(initialValue);
-  const [error, setError] = React.useState("");
-
-  const validate = React.useCallback(
-    (val) => {
-      if (!validator) return true;
-
-      const valid = validator(val);
-      setError(valid ? "" : "Некорректный ввод");
-      onValidation?.(valid);
-      return valid;
-    },
-    [validator, onValidation],
-  );
-
-  const handleChange = (e) => {
-    const val = e.target.value;
-    setValue(val);
-    onChange?.(e);
-  };
-
-  const handleBlur = (e) => {
-    validate(value);
-    onBlur?.(e);
-  };
-
-  return {
-    value,
-    error,
-    onChange: handleChange,
-    onBlur: handleBlur,
-  };
-};
-
-const usePriceInput = ({ initialValue = 0, onChange }) => {
-  const [digits, setDigits] = React.useState(
-    Math.round(initialValue * 100).toString(),
-  );
-
-  const handleChange = (e) => {
-    const nextDigits = parsePriceDigits(e.target.value);
-    setDigits(nextDigits);
-  };
-
-  React.useEffect(() => {
-    onChange?.(Number(digits || 0) / 100);
-  }, [digits, onChange]);
-
-  return {
-    value: formatPriceFromDigits(digits),
-    inputMode: "numeric",
-    onChange: handleChange,
-  };
-};
-
-/* =========================
-   BASE UI
-========================= */
-
-const BaseInput = ({
-  label,
-  status = "normal",
-  errorMessage,
-  id,
+const ConfirmBlock = ({
+  value,
+  confirmLabel = "Подтвердите",
+  onConfirm,
+  errorMessage = "Значения не совпадают",
   children,
 }) => {
-  const isBlocked = status === "blocked";
-  const isError = status === "error" || !!errorMessage;
+  const [confirmValue, setConfirmValue] = useState("");
+  const [error, setError] = useState("");
+
+  const handleConfirm = (v) => {
+    setConfirmValue(v);
+    const isMatch = v === value;
+    setError(isMatch ? "" : errorMessage);
+    onConfirm?.(isMatch);
+  };
 
   return (
-    <div className={styles.wrapper}>
-      {label && (
-        <label htmlFor={id} className={styles.label}>
-          {label}
-        </label>
-      )}
-
-      {React.cloneElement(children, {
-        id,
-        disabled: isBlocked,
-        className: `
-          ${styles.input}
-          ${styles[status]}
-          ${isError ? styles.error : ""}
-          ${children.props.className || ""}
-        `,
-      })}
-
-      {isError && <span className={styles.errorText}>{errorMessage}</span>}
+    <div className={styles.confirmGroup}>
+      {children}
+      <input
+        className={styles.input}
+        placeholder={confirmLabel}
+        value={confirmValue}
+        onChange={(e) => handleConfirm(e.target.value)}
+      />
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };
 
 /* =========================
-   BASIC INPUTS
+   TEXT & NUMBER & SELECT
 ========================= */
-
-const TextInput = (props) => (
-  <BaseInput {...props}>
-    <input type="text" />
+export const TextInput = forwardRef(({ label, error, ...props }, ref) => (
+  <BaseInput label={label} error={error}>
+    <input ref={ref} className={styles.input} {...props} />
   </BaseInput>
+));
+
+export const TextAreaInput = forwardRef(
+  ({ label, error, rows = 4, ...props }, ref) => (
+    <BaseInput label={label} error={error}>
+      <textarea ref={ref} className={styles.textarea} rows={rows} {...props} />
+    </BaseInput>
+  ),
 );
 
-const NumInput = (props) => (
-  <BaseInput {...props}>
-    <input type="number" />
-  </BaseInput>
-);
-
-const PassInput = (props) => (
-  <BaseInput {...props}>
-    <input type="password" />
-  </BaseInput>
-);
-
-const NoteInput = (props) => (
-  <BaseInput {...props}>
-    <textarea />
-  </BaseInput>
-);
-
-const SelectInput = ({ options = [], ...props }) => (
-  <BaseInput {...props}>
-    <select>
-      {options.map((opt) => (
-        <option key={opt.value} value={opt.value}>
-          {opt.label}
-        </option>
-      ))}
-    </select>
-  </BaseInput>
+export const SelectInput = forwardRef(
+  ({ label, error, options = [], ...props }, ref) => (
+    <BaseInput label={label} error={error}>
+      <select ref={ref} className={styles.select} {...props}>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+    </BaseInput>
+  ),
 );
 
 /* =========================
-   CONTROLLED INPUTS
+   EMAIL & PASSWORD (Hybrid Mode)
 ========================= */
+export const EmailInput = forwardRef(
+  (
+    {
+      label = "E-mail",
+      confirm,
+      value: externalValue,
+      onChange,
+      error,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalValue, setInternalValue] = useState("");
+    const isControlled = externalValue !== undefined;
+    const currentValue = isControlled ? externalValue : internalValue;
 
-const ControlledInput = ({
-  initialValue,
-  validator,
-  onValidation,
-  errorMessage,
-  ...props
-}) => {
-  const input = useControlledInput({
-    initialValue,
-    validator,
-    onValidation,
-    onChange: props.onChange,
-    onBlur: props.onBlur,
-  });
+    const handleChange = (e) => {
+      const val = e.target.value;
+      if (!isControlled) setInternalValue(val);
+      onChange?.(val);
+    };
 
-  return (
-    <BaseInput errorMessage={input.error || errorMessage}>
-      <input {...props} {...input} />
-    </BaseInput>
-  );
-};
+    const inputEl = (
+      <input
+        ref={ref}
+        type="email"
+        className={styles.input}
+        value={currentValue}
+        onChange={handleChange}
+        {...props}
+      />
+    );
 
-const TextModInput = (props) => <ControlledInput {...props} />;
-
-const EmailInput = (props) => (
-  <ControlledInput {...props} type="email" validator={isValidEmail} />
+    return (
+      <BaseInput label={label} error={error}>
+        {confirm ? (
+          <ConfirmBlock value={currentValue} confirmLabel="Подтвердите e-mail">
+            {inputEl}
+          </ConfirmBlock>
+        ) : (
+          inputEl
+        )}
+      </BaseInput>
+    );
+  },
 );
 
-const PhoneInput = (props) => (
-  <ControlledInput {...props} inputMode="numeric" validator={isValidPhone} />
-);
+export const PasswordInput = forwardRef(
+  (
+    {
+      label = "Пароль",
+      confirm,
+      value: externalValue,
+      onChange,
+      error,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalValue, setInternalValue] = useState("");
+    const [visible, setVisible] = useState(false);
 
-/* =========================
-   PRICE INPUT (FIXED SCALE)
-========================= */
+    const isControlled = externalValue !== undefined;
+    const currentValue = isControlled ? externalValue : internalValue;
 
-const PriceInput = ({ onChange, ...props }) => {
-  const price = usePriceInput({ onChange });
+    const handleChange = (e) => {
+      const val = e.target.value;
+      if (!isControlled) setInternalValue(val);
+      onChange?.(val);
+    };
 
-  return (
-    <BaseInput {...props}>
-      <input type="text" {...price} />
-    </BaseInput>
-  );
-};
-
-const ConfirmField = ({
-  children,
-  label = "Подтверждение",
-  errorMessage = "Значения не совпадают",
-  onChange,
-}) => {
-  const child = React.Children.only(children);
-
-  const [value, setValue] = React.useState("");
-  const [confirm, setConfirm] = React.useState("");
-  const [error, setError] = React.useState("");
-
-  const handleMainChange = (e) => {
-    setValue(e.target.value);
-    child.props.onChange?.(e);
-  };
-
-  const handleConfirmChange = (e) => {
-    setConfirm(e.target.value);
-  };
-
-  React.useEffect(() => {
-    if (!value && !confirm) {
-      setError("");
-      return;
-    }
-
-    if (value !== confirm) {
-      setError(errorMessage);
-      onChange?.({ value, valid: false });
-      return;
-    }
-
-    setError("");
-    onChange?.({ value, valid: true });
-  }, [value, confirm, errorMessage, onChange]);
-
-  return (
-    <BaseInput label={label} errorMessage={error}>
-      <div className={styles.confirmGroup}>
-        {React.cloneElement(child, {
-          onChange: handleMainChange,
-        })}
-
+    const inputEl = (
+      <div className={styles.passwordWrap}>
         <input
-          type={child.props.type || "text"}
-          placeholder="Подтвердите"
-          value={confirm}
-          onChange={handleConfirmChange}
+          ref={ref}
+          type={visible ? "text" : "password"}
+          className={styles.input}
+          value={currentValue}
+          onChange={handleChange}
+          {...props}
         />
+        <button
+          type="button"
+          className={styles.toggle}
+          onClick={() => setVisible(!visible)}
+        >
+          {visible ? "👁️‍🗨️" : "👁️"}
+        </button>
       </div>
-    </BaseInput>
-  );
-};
+    );
 
+    return (
+      <BaseInput label={label} error={error}>
+        {confirm ? (
+          <ConfirmBlock value={currentValue} confirmLabel="Подтвердите пароль">
+            {inputEl}
+          </ConfirmBlock>
+        ) : (
+          inputEl
+        )}
+      </BaseInput>
+    );
+  },
+);
 
 /* =========================
-   EXPORTS
+   PRICE (Formatting Logic)
 ========================= */
+export const PriceInput = forwardRef(
+  ({ label = "Цена", onChange, value: externalValue, error }, ref) => {
+    const [digits, setDigits] = useState("");
 
-export {
-  TextInput,
-  NumInput,
-  PassInput,
-  NoteInput,
-  SelectInput,
-  TextModInput,
-  EmailInput,
-  PhoneInput,
-  PriceInput,
-};
+    const formatDisplay = (d) => {
+      if (!d) return "0.00";
+      const clean = d.padStart(3, "0");
+      const integerPart = Number(clean.slice(0, -2)).toLocaleString("ru-RU");
+      const fractionPart = clean.slice(-2);
+      return `${integerPart}.${fractionPart}`;
+    };
+
+    const handleChange = (e) => {
+      const d = e.target.value.replace(/\D/g, "");
+      setDigits(d);
+      onChange?.(Number(d || 0) / 100);
+    };
+
+    return (
+      <BaseInput label={label} error={error}>
+        <input
+          ref={ref}
+          className={styles.input}
+          inputMode="numeric"
+          value={formatDisplay(digits)}
+          onChange={handleChange}
+        />
+      </BaseInput>
+    );
+  },
+);
