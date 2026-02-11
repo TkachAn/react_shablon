@@ -1,4 +1,6 @@
 import { Auth, LogoType } from "../../components/bloks/bloks";
+import { InpG } from "../../components/contents/forHome/sec_inp/inpG"; // Путь к вашему компоненту InpG
+import { InpS } from "../../components/contents/forHome/sec_inp/inpS";
 import { DinNav } from "../../components/contents/forNav/DinNav"; 
 import { Container } from "../../components/structGrid/container/container";
 import {
@@ -19,11 +21,11 @@ export function Hp() {
     <>
       <Header>
         <LogoType>Логотип</LogoType>
-        <DinNav/>
+        <DinNav />
         <Auth>Авторизация</Auth>
       </Header>
-      <AutoNav/>
-      
+      <AutoNav />
+
       <Container>
         <Grid>
           <AsideLeft>Меню сайта</AsideLeft>
@@ -31,8 +33,9 @@ export function Hp() {
             <Hero id="hero">
               <h1>Главный баннер</h1>
             </Hero>
-            <Section id={1} title="Выборка контента">
-              Выборка контента
+            <Section id={1} title="Поля ввода">
+              <InpS />
+              <InpG />
             </Section>
             <Section id={2} title="Выборка контента2">
               <Article title="Статья внутри секции">
