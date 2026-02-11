@@ -1,0 +1,49 @@
+/**/
+.docTitle {
+  color: #1a73e8;
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+/* si.module.css */
+.docTitle {
+  color: #1a73e8;
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navLink {
+  display: block;
+  padding: 8px 0;
+  color: #555;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #1a73e8;
+}
+
+.demoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px solid #eee;
+}
+
+.codeBlock {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  overflow-x: auto;
+  text-align: left;
+}

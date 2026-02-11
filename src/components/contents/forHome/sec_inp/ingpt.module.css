@@ -1,0 +1,273 @@
+/* Раздел документации */
+.docContainer {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.docBlock {
+  margin-bottom: 60px;
+  padding: 30px;
+  border: 1px solid #eef2f6;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.transformationTable {
+  margin: 20px 0;
+  padding: 15px;
+  background: #fcfcfc;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.inputBadge {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
+.outputBadge {
+  background: #e7f3ff;
+  color: #007bff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #b3d7ff;
+  font-weight: bold;
+}
+
+.exampleArea {
+  padding: 25px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #dadce0;
+  margin: 20px 0;
+}
+
+.codeBox {
+  background: #202124;
+  padding: 20px;
+  border-radius: 12px;
+  color: #a1efe4;
+  font-size: 13px;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+}
+/* Стили документации (модульные) */
+.docSection {
+  margin-bottom: 50px;
+  padding: 25px;
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.docTitle {
+  color: #1a73e8;
+  margin: 0 0 10px 0;
+  font-size: 22px;
+}
+
+.docDesc {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.transformTable {
+  background: #fcfcfc;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.transformRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.inputBadge {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
+.outputBadge {
+  background: #e7f3ff;
+  color: #007bff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #b3d7ff;
+  font-weight: bold;
+}
+
+.exampleArea {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #dadce0;
+  margin-bottom: 15px;
+}
+
+.codeBox {
+  background: #202124;
+  padding: 15px;
+  border-radius: 8px;
+  color: #a1efe4;
+  font-size: 13px;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+}
+/****************/
+
+/* ingpt.module.css */
+
+/* Главный контейнер всей документации */
+.docContainer {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Карточка отдельной секции (например, для TextInput) */
+.docBlock {
+  margin-bottom: 60px;
+  padding: 30px;
+  border: 1px solid #eef2f6;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Заголовки и подзаголовки внутри секции */
+.docTitle {
+  color: #1a73e8;
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.docSubTitle {
+  color: #5f6368;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.docDescription {
+  color: #3c4043;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Список ключевых возможностей */
+.featureList {
+  padding-left: 20px;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 20px 0;
+}
+
+/* Таблица трансформации (Вход -> Результат) */
+.transformationTable {
+  margin: 20px 0;
+  padding: 15px;
+  background: #fcfcfc;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.inputBadge {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
+.outputBadge {
+  background: #e7f3ff;
+  color: #007bff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #b3d7ff;
+  font-weight: bold;
+}
+
+/* Область с живыми инпутами */
+.exampleArea {
+  padding: 25px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #dadce0;
+  margin: 25px 0;
+}
+
+/* Блок с кодом (Syntax highlighting style) */
+.codeBox {
+  background: #202124;
+  padding: 20px;
+  border-radius: 12px;
+  color: #a1efe4;
+  font-size: 13px;
+  font-family: 'Fira Code', monospace;
+  overflow-x: auto;
+}
+
+.codeLabel {
+  display: block;
+  margin-bottom: 10px;
+  color: #9aa0a6;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Добавь это в ingpt.module.css */
+
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Адаптив: на маленьких экранах в одну колонку */
+@media (max-width: 600px) {
+  .gridTwo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
