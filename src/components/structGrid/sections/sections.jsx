@@ -6,20 +6,35 @@ export function Header({ children, id }) {
   return (
     <header id={id}>
       <Container className={s.headerSet}>
-        <div className={s.header}>
-          {children}
-        </div>
+        <div className={s.header}>{children}</div>
       </Container>
     </header>
   );
 }
-
+/*
 export function Main({ children }) {
   return <main className={s.main}>{children}</main>;
 }
 
 export function Hero({ children }) {
   return <section className={s.hero}>{children}</section>;
+}
+*/
+
+export function Main({ children, title = "MAIN" }) {
+  return (
+    <main className={s.main} title={title}>
+      {children}
+    </main>
+  );
+}
+
+export function Hero({ children, title = "HERO" }) {
+  return (
+    <section className={s.hero} title={title}>
+      {children}
+    </section>
+  );
 }
 
 export function Section({ children, title, id, className }) {
@@ -30,13 +45,14 @@ export function Section({ children, title, id, className }) {
     </section>
   );
 }
-export function Grid({ children, id, className }) {
+export function Grid({ children, id, className, title = "GRID" }) {
   return (
-    <div id={id} className={`${s.grid} ${className || ""}`}>
+    <div id={id} title={title} className={`${s.grid} ${className || ""}`}>
       {children}
     </div>
   );
 }
+/*
 export function Flex({ children, id, className }) {
   return (
     <div id={id} className={`${s.flex} ${className || ""}`}>
@@ -44,6 +60,16 @@ export function Flex({ children, id, className }) {
     </div>
   );
 }
+*/
+
+export function Flex({ children, id, className, title = "FLEX" }) {
+  return (
+    <div id={id} title={title} className={`${s.flex} ${className || ""}`}>
+      {children}
+    </div>
+  );
+}
+
 export function Article({ children, title, id, className }) {
   return (
     <article id={id} className={`${s.article} ${className || ""}`}>
@@ -52,6 +78,7 @@ export function Article({ children, title, id, className }) {
     </article>
   );
 }
+/*
 export function AsideLeft({ children, title, id, className }) {
   return (
     <aside id={id} className={`${s.asideLeft} ${className || ""}`}>
@@ -60,7 +87,22 @@ export function AsideLeft({ children, title, id, className }) {
     </aside>
   );
 }
+  */
 
+export function AsideLeft({ children, title, id, className }) {
+  return (
+    <aside
+      id={id}
+      title={title}
+      className={`${s.asideLeft} ${className || ""}`}
+    >
+      <h3 className={s.aside_title}>{title}</h3>
+      {children}
+    </aside>
+  );
+}
+
+/*
 export function AsideRight({ children, title, id, className }) {
   return (
     <aside id={id} className={`${s.asideRight} ${className || ""}`}>
@@ -69,9 +111,32 @@ export function AsideRight({ children, title, id, className }) {
     </aside>
   );
 }
+*/
+
+export function AsideRight({ children, title, id, className }) {
+  return (
+    <aside
+      id={id}
+      title={title}
+      className={`${s.asideRight} ${className || ""}`}
+    >
+      <h3 className={s.aside_title}>{title}</h3>
+      {children}
+    </aside>
+  );
+}
+
+/*
 export function Footer({ children }) {
   return (
     <footer className={s.footer}>
+      <Container>{children}</Container>
+    </footer>
+  );
+}*/
+export function Footer({ children, title = "FOOTER" }) {
+  return (
+    <footer className={s.footer} title={title}>
       <Container>{children}</Container>
     </footer>
   );
