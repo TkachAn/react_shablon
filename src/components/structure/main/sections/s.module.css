@@ -44,7 +44,7 @@
 }
 
 /* --- 3. FULL HD (от 1400px) --- */
-@media (min-width: 1440px) {
+@media (min-width: 1440px){
   .flex {
     display: flex; /* Только здесь включаем колонки в ряд */
     justify-content: space-between;
@@ -63,7 +63,8 @@
   }
 
   .section {
-    text-align: center; /* Возвращаем центрирование на больших экранах */
+    text-align: center; 
+   /* max-width: 1090px;*/
   }
 }
 
@@ -74,6 +75,10 @@
   }
   .asideLeft {
     width: 350px; /* Больше места под навигацию */
+  }
+    .section {
+    text-align: center; 
+    /*max-width: 1490px;*/
   }
 }
 

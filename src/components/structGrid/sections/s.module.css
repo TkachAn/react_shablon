@@ -253,6 +253,7 @@ header {
   }
   .section {
     text-align: center;
+    max-width: 1120px;
   }
 }
 @media (min-width: 1920px) {
